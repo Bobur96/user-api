@@ -12,7 +12,7 @@ class UserDAO {
     company_name,
     descriptions
   ) {
-    const [id] = await db("user")
+    const [id] = await db("users")
       .insert({
         first_name,
         last_name,
@@ -43,12 +43,12 @@ class UserDAO {
         "company_name",
         "descriptions"
       )
-      .from("user");
+      .from("users");
     return users;
   }
 
   async getUser(id) {
-    const user = await db("user").where("id", id).returning("id");
+    const user = await db("users").where("id", id).returning("id");
     return user;
   }
 
@@ -64,7 +64,7 @@ class UserDAO {
     company_name,
     descriptions
   ) {
-    const [iD] = await db("user")
+    const [iD] = await db("users")
       .where("id", id)
       .update({
         first_name: first_name,
@@ -83,7 +83,7 @@ class UserDAO {
   }
 
   async deleteUser(id) {
-    const [iD] = await db("user").where("id", id).delete().returning("id");
+    const [iD] = await db("users").where("id", id).delete().returning("id");
 
     return iD;
   }
