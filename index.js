@@ -6,8 +6,9 @@ const swaggerJsDoc = require("swagger-jsdoc");
 
 const app = express();
 app.use(express.json());
-app.use(router);
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(router);
 
 const urlForSwagger = process.env.NODE_ENV
   ? "https://user-api-for-node.herokuapp.com/"
